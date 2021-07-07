@@ -23,10 +23,10 @@
 	</head>
 	<body>
 		<button
-			onclick="showCircle(150, 150, 100, div => {
-			div.classList.add('message-ball');
-			div.append('Hello, world!');
-		})"
+			onclick="showCircle(150, 150, 100).then(div => {
+        div.classList.add('message-ball');
+        div.append('Hello, world!');
+      })"
 		>
 			showCircle(150, 150, 100)
 		</button>
@@ -58,7 +58,7 @@
 
 			/* Перепишите функцию showCircle, написанную в задании Анимация круга с помощью колбэка таким образом, чтобы она возвращала промис, вместо того чтобы принимать в аргументы функцию-callback. */
 
-			function showCircle(cx, cy, radius, func) {
+			function showCircle(cx, cy, radius) {
 				let div = document.createElement("div")
 				div.style.width = 0
 				div.style.height = 0
@@ -73,8 +73,10 @@
 
 					div.addEventListener("transitionend", function handler() {
 						div.removeEventListener("transitionend", handler)
-						func(div)
 					})
+				})
+				return new Promise((resolve) => {
+					resolve(div)
 				})
 			}
 		</script>

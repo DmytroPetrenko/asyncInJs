@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Promise-error-handling</title>
+	</head>
+	<body>
+		<script>
+			new Promise(function (resolve, reject) {
+				setTimeout(() => {
+					throw new Error("Whoops!")
+
+					// не выполнится из-за сетТаймаута. Он же ничего не возвращает. Пример как вернуть - ниже
+					/* try {
+						const a = 12
+						a = 10
+					} catch (e) {
+						reject(new Error("Whoops!"))
+					} */
+				}, 1000)
+			}).catch(alert)
+		</script>
+	</body>
+</html>
